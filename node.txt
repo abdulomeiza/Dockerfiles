@@ -4,7 +4,7 @@ def mavenHome = tool name: "maven3.6.3"
     
     stage("CodeClone")
     {
-       git credentialsId: 'gitCredentials', url: 'https://github.com/LandmakTechnology/maven-web-app.git'
+       git credentialsId: 'gitCredentials', url: 'https://github.com/acadalearning/maven-web-app.git'
     }
     stage("CreatePackage")
     {
@@ -27,26 +27,26 @@ def mavenHome = tool name: "maven3.6.3"
      {
         //sh "docker stop myapp"
         //sh "docker rm -f myapp"
-        sh "docker rmi -f mylandmarktech/maven-web-app"
-        sh "docker build -t mylandmarktech/maven-web-app ."
+        sh "docker rmi -f acadalearning/maven-web-app"
+        sh "docker build -t acadalearning/maven-web-app ."
     }
     stage('Push2DockerHub')
      {
     withCredentials([string(credentialsId: 'DockerHubPwd', variable: 'DockerHubPwd')]) {
-        sh "docker login -u mylandmarktech -p $DockerHubPwd"
+        sh "docker login -u acadalearning -p $DockerHubPwd"
 }
    } 
-        sh "docker push mylandmarktech/maven-web-app"
+        sh "docker push acadalearning/maven-web-app"
     }
     stage('DeployAppInDockerContainer')
      {
-        sh "docker run -d -p 8888:8080 --name myapp mylandmarktech/maven-web-app"
+        sh "docker run -d -p 8888:8080 --name myapp acadalearning/maven-web-app"
     }
     stage('Email notification')
     {
 emailext body: '''
 Build Status
-Landmark Technology
-+ 1 437 215 2483\'\'\', recipientProviders: [developers()], subject: \'Build status\', to: \'legah2000@gmail.com\'''', recipientProviders: [developers()], subject: 'Build', to: 'legah2002@gmail.com'   
+ACADA Learning
++ 1 587 574 2233\'\'\', recipientProviders: [developers()], subject: \'Build status\', to: \'acadalearning@gmail.com\'''', recipientProviders: [developers()], subject: 'Build', to: 'acadalearning@gmail.com'   
     }
 }
