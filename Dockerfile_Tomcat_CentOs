@@ -1,6 +1,6 @@
 FROM centos
 
-MAINTAINER mylandmarktech@gmail.com
+MAINTAINER info@acadalearning.com
 
 RUN mkdir /opt/tomcat/
 
