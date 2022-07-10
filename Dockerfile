@@ -9,10 +9,10 @@ ENTRYPOINT [ "echo", "hello" ]
 #git
 FROM alpine/git as repo
 
-MAINTAINER name mylandmarktech@gmail.com
+MAINTAINER name info@acadalearning.com
 
 WORKDIR /app
-RUN git clone https://github.com/LandmakTechnology/maven-web-app.git
+RUN git clone https://github.com/acadalearning/maven-web-app.git
 
 #Maven
 FROM maven:3.5-jdk-8-alpine as build
