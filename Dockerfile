@@ -21,7 +21,7 @@ COPY --from=repo /app/maven-web-app  /app
 RUN mvn install
 
 #Tomcat
-FROM tomcat:8.0.20-jre8
+FROM tomcat:9.0.64-jre8-temurin-jammy
 COPY --from=build /app/target/maven-web-app*.war /usr/local/tomcat/webapps/maven-web-app.war
 
 
